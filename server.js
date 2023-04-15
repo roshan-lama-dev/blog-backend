@@ -12,7 +12,7 @@ app.use(morgan("dev"));
 
 mongoDbConnection();
 app.get("/", (req, res) => {
-  res.send("Hello");
+  res.send("Hello form the router");
 });
 
 app.listen(PORT, (error) => {
