@@ -5,10 +5,12 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
   try {
-    const user = await new User(req.body);
-    res.send(user);
+    const newUser = new User(req.body);
+    // res.send(user);
+    const user = await newUser.save();
+    res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    res.status(500).json(error);
   }
 
   //   console.log(user);
