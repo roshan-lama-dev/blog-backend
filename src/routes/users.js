@@ -28,4 +28,29 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// Delete
+router.delete("/:id", async (req, res) => {
+  if (req.body.id === req.params.id) {
+    try {
+      await User.findByIdAndDelete(req.params.id);
+      res.status(200).json("User account is deleted");
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  } else {
+    res.status(401).json("You are not authorised");
+  }
+});
+
+// Get user
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    user.password = undefined;
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 export default router;
