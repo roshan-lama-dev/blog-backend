@@ -3,6 +3,8 @@ import dotnev from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import { mongoDbConnection } from "./src/config/dbConfig.js";
+
+import autRouter from "./src/routes/auth.js";
 const app = express();
 const PORT = 8080;
 dotnev.config();
@@ -14,6 +16,8 @@ mongoDbConnection();
 app.get("/", (req, res) => {
   res.send("Hello form the router");
 });
+
+app.use("/api/v1", autRouter);
 
 app.listen(PORT, (error) => {
   error
