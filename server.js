@@ -7,6 +7,7 @@ import { mongoDbConnection } from "./src/config/dbConfig.js";
 import autRouter from "./src/routes/auth.js";
 import userRouter from "./src/routes/users.js";
 import postRouter from "./src/routes/posts.js";
+import catRouter from "./src/routes/categories.js";
 const app = express();
 const PORT = 8080;
 dotnev.config();
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", autRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/posts", postRouter);
+app.use("/api/v1/category", catRouter);
 
 app.listen(PORT, (error) => {
   error
